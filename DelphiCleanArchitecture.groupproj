@@ -1,0 +1,72 @@
+﻿<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+    <PropertyGroup>
+        <ProjectGuid>{973F6B4A-EE23-4F0C-8CE2-F8F6E3562A6B}</ProjectGuid>
+    </PropertyGroup>
+    <ItemGroup>
+        <Projects Include="sources\Application\CleanArchApplication.dproj">
+            <Dependencies>sources\Infrastructure\CleanArchInfrastructure.dproj;sources\Domain\CleanArchDomain.dproj</Dependencies>
+        </Projects>
+        <Projects Include="sources\Infrastructure\CleanArchInfrastructure.dproj">
+            <Dependencies>sources\Domain\CleanArchDomain.dproj</Dependencies>
+        </Projects>
+        <Projects Include="sources\Domain\CleanArchDomain.dproj">
+            <Dependencies/>
+        </Projects>
+        <Projects Include="tests\CleanArchUnitTests.dproj">
+            <Dependencies/>
+        </Projects>
+    </ItemGroup>
+    <ProjectExtensions>
+        <Borland.Personality>Default.Personality.12</Borland.Personality>
+        <Borland.ProjectType/>
+        <BorlandProject>
+            <Default.Personality/>
+        </BorlandProject>
+    </ProjectExtensions>
+    <Target Name="CleanArchApplication" DependsOnTargets="CleanArchInfrastructure;CleanArchDomain">
+        <MSBuild Projects="sources\Application\CleanArchApplication.dproj"/>
+    </Target>
+    <Target Name="CleanArchApplication:Clean" DependsOnTargets="CleanArchInfrastructure:Clean;CleanArchDomain:Clean">
+        <MSBuild Projects="sources\Application\CleanArchApplication.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CleanArchApplication:Make" DependsOnTargets="CleanArchInfrastructure:Make;CleanArchDomain:Make">
+        <MSBuild Projects="sources\Application\CleanArchApplication.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CleanArchInfrastructure" DependsOnTargets="CleanArchDomain">
+        <MSBuild Projects="sources\Infrastructure\CleanArchInfrastructure.dproj"/>
+    </Target>
+    <Target Name="CleanArchInfrastructure:Clean" DependsOnTargets="CleanArchDomain:Clean">
+        <MSBuild Projects="sources\Infrastructure\CleanArchInfrastructure.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CleanArchInfrastructure:Make" DependsOnTargets="CleanArchDomain:Make">
+        <MSBuild Projects="sources\Infrastructure\CleanArchInfrastructure.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CleanArchDomain">
+        <MSBuild Projects="sources\Domain\CleanArchDomain.dproj"/>
+    </Target>
+    <Target Name="CleanArchDomain:Clean">
+        <MSBuild Projects="sources\Domain\CleanArchDomain.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CleanArchDomain:Make">
+        <MSBuild Projects="sources\Domain\CleanArchDomain.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="CleanArchUnitTests">
+        <MSBuild Projects="tests\CleanArchUnitTests.dproj"/>
+    </Target>
+    <Target Name="CleanArchUnitTests:Clean">
+        <MSBuild Projects="tests\CleanArchUnitTests.dproj" Targets="Clean"/>
+    </Target>
+    <Target Name="CleanArchUnitTests:Make">
+        <MSBuild Projects="tests\CleanArchUnitTests.dproj" Targets="Make"/>
+    </Target>
+    <Target Name="Build">
+        <CallTarget Targets="CleanArchApplication;CleanArchInfrastructure;CleanArchDomain;CleanArchUnitTests"/>
+    </Target>
+    <Target Name="Clean">
+        <CallTarget Targets="CleanArchApplication:Clean;CleanArchInfrastructure:Clean;CleanArchDomain:Clean;CleanArchUnitTests:Clean"/>
+    </Target>
+    <Target Name="Make">
+        <CallTarget Targets="CleanArchApplication:Make;CleanArchInfrastructure:Make;CleanArchDomain:Make;CleanArchUnitTests:Make"/>
+    </Target>
+    <Import Project="$(BDS)\Bin\CodeGear.Group.Targets" Condition="Exists('$(BDS)\Bin\CodeGear.Group.Targets')"/>
+</Project>

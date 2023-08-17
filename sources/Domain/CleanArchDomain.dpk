@@ -1,0 +1,62 @@
+package CleanArchDomain;
+
+{$R *.res}
+{$IFDEF IMPLICITBUILDING This IFDEF should not be used by users}
+{$ALIGN 8}
+{$ASSERTIONS ON}
+{$BOOLEVAL OFF}
+{$DEBUGINFO OFF}
+{$EXTENDEDSYNTAX ON}
+{$IMPORTEDDATA ON}
+{$IOCHECKS ON}
+{$LOCALSYMBOLS ON}
+{$LONGSTRINGS ON}
+{$OPENSTRINGS ON}
+{$OPTIMIZATION OFF}
+{$OVERFLOWCHECKS ON}
+{$RANGECHECKS ON}
+{$REFERENCEINFO ON}
+{$SAFEDIVIDE OFF}
+{$STACKFRAMES ON}
+{$TYPEDADDRESS OFF}
+{$VARSTRINGCHECKS ON}
+{$WRITEABLECONST OFF}
+{$MINENUMSIZE 1}
+{$IMAGEBASE $400000}
+{$DEFINE DEBUG}
+{$ENDIF IMPLICITBUILDING}
+{$IMPLICITBUILD ON}
+
+requires
+  rtl,
+  dbrtl,
+  FireDAC,
+  FireDACCommonDriver,
+  FireDACCommon,
+  FireDACSqliteDriver,
+  Spring.Base,
+  Spring.Persistence;
+
+contains
+  CustomerEntity in 'CustomerEntity.pas',
+  EmployeeEntity in 'EmployeeEntity.pas',
+  SupplierEntity in 'SupplierEntity.pas',
+  RepositoryIntf in 'Common\RepositoryIntf.pas',
+  DateTimeServiceIntf in 'Common\DateTimeServiceIntf.pas',
+  EOrderException in 'Orders\EOrderException.pas',
+  OrderAggregate in 'Orders\OrderAggregate.pas',
+  OrderAggregateIntf in 'Orders\OrderAggregateIntf.pas',
+  OrderDetailEntity in 'Orders\OrderDetailEntity.pas',
+  OrderEntity in 'Orders\OrderEntity.pas',
+  OrderDetailRepositoryIntf in 'Orders\OrderDetailRepositoryIntf.pas',
+  ShipperService in 'Shippers\ShipperService.pas',
+  ShipperEntity in 'Shippers\ShipperEntity.pas',
+  ShipperServiceIntf in 'Shippers\ShipperServiceIntf.pas',
+  EShipperException in 'Shippers\EShipperException.pas',
+  NotificationServiceIntf in 'Common\NotificationServiceIntf.pas',
+  CategoryEntity in 'Products\CategoryEntity.pas',
+  ProductEntity in 'Products\ProductEntity.pas';
+
+end.
+
+
