@@ -20,6 +20,8 @@ uses
   Startup in 'Startup.pas',
   OrderView in 'OrderView.pas';
 
+// TODO: write readme file
+
 begin
   try
     ReportMemoryLeaksOnShutdown := True;
@@ -34,6 +36,7 @@ begin
 
     var view := TOrderView.Create(orderRepository, orderDetailRepository, aggregate);
     view.ShowAllOrders;
+    //  view.CreateOneOrder;
 
     Console.WaitUserInput();
   except

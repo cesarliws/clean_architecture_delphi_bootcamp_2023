@@ -56,7 +56,7 @@ begin
   var aggregateItems := fOrderDetailRepository.GetDetail(order.Id);
   for var item in aggregateItems do
   begin
-    Writeln('  - Product: ', TJsonSerializer.SerializeIndented<TOrderDetail>(item));
+    Writeln('  - Order Detail: ', TJsonSerializer.SerializeIndented<TOrderDetail>(item));
   end;
 end;
 

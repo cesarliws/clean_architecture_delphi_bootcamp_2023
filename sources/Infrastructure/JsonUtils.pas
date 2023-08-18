@@ -19,7 +19,7 @@ implementation
 
 class function TJsonSerializer.Serialize<T>(const value: T; indented: Boolean = false): string;
 begin
-  var serializer := TJsonSerializer.Create;
+  var serializer := System.JSON.Serializers.TJsonSerializer.Create;
   try
     if indented then
       serializer.Formatting := TJsonFormatting.Indented;
@@ -32,7 +32,7 @@ end;
 
 class function TJsonSerializer.SerializeIndented<T>(const value: T): string;
 begin
-  Result := Serialize<T>(value, true);
+  Result := TJsonSerializer.Serialize<T>(value, true);
 end;
 
 end.
