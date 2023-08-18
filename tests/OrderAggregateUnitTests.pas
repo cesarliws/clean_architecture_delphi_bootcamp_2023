@@ -44,9 +44,7 @@ type
     procedure CreateOrder_Should_Add_One_Order_To_Repository();
 
     [Test]
-    [TestCase('Item_1','1,2')]
-    [TestCase('Item_2','3,4')]
-    procedure AddItem_Should_Add_Items_To_Repository(const AValue1 : Integer;const AValue2 : Integer);
+    procedure AddItem_Should_Add_Items_To_Repository();
   end;
 
 implementation
@@ -93,8 +91,9 @@ begin
   fOrderRepository.Received(Times.Once).Add(order);
 end;
 
-procedure TOrderAggregateTest.AddItem_Should_Add_Items_To_Repository(const AValue1 : Integer;const AValue2 : Integer);
+procedure TOrderAggregateTest.AddItem_Should_Add_Items_To_Repository();
 begin
+  // TODO : implement order AddItem test case
   Assert.Pass();
 end;
 
