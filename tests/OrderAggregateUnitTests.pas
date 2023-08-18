@@ -54,9 +54,6 @@ implementation
 uses
   System.SysUtils;
 
-  // todo: IDateTimeSetup
-  // todo: https://dobesone.atlassian.net/wiki/spaces/BDC/pages/812089345/042499+-+Testes+Unit+rios+no+Delphi+10
-
 procedure TOrderAggregateTest.Setup;
 begin
   fDateTimeService := Mock<IDateTimeService>.Create();
@@ -65,7 +62,6 @@ begin
 
   fCustomerRepository := Mock<IRepository<TCustomer>>.Create();
   fCustomerRepository.Setup.Returns<TCustomer>(TCustomer.Create).When.GetById(Arg.IsAny<TValue>);
-  // fCustomerRepository.Setup.Returns<TCustomer>(TCustomer.Create).When.GetById(1);
 
   fEmployeeRepository := Mock<IRepository<TEmployee>>.Create();
   fEmployeeRepository.Setup.Returns<TEmployee>(TEmployee.Create).When.GetById(Arg.IsAny<TValue>);
@@ -86,6 +82,7 @@ begin
   var order := fOrderAggregate.CreateOrder('1',2, 3);
 
   Assert.IsNotNull(order);
+
   // TODO : can be compared with Assert.AreSame();
   Assert.AreEqual(order.OrderDate, fDateTime);
   Assert.AreEqual(order.RequiredDate, fDateTime);
