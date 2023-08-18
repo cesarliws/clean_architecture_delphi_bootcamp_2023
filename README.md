@@ -20,7 +20,7 @@ This project was created for my presentation on how to use Design Patterns and U
     - Specification
 - ORM
 - Unit testing
-    - Mock
+    - Mocking
 
 ## Benefits
 
