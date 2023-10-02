@@ -5,17 +5,13 @@ program CleanArchApplication;
 
 uses
   System.SysUtils,
-
   Spring.Container,
   Spring.Persistence.Criteria.Properties,
-
   OrderEntity,
   OrderDetailEntity,
-
   RepositoryIntf,
   OrderDetailRepositoryIntf,
   OrderAggregateIntf,
-
   ConsoleUtils,
   Startup in 'Startup.pas',
   OrderView in 'OrderView.pas';
@@ -26,7 +22,7 @@ begin
   try
     ReportMemoryLeaksOnShutdown := True;
 
-    var services := GlobalContainer;
+    var services := Spring.Container.GlobalContainer;
     TStartup.ConfigureServices(services);
     services.Build();
 

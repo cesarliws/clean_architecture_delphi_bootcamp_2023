@@ -10,7 +10,7 @@ type
   TOrderDetail = class
   private
     fOrderId: Integer;
-    FProductId: Integer;
+    fProductId: Integer;
     fUnitPrice: Currency;
     fQuantity: SmallInt;
     fDiscount: Currency;
@@ -23,7 +23,7 @@ type
     ///  do not supports composed Keys, that may lead to bugs in some database operations.
     /// </summary>
     [Column('ProductID', [cpRequired, cpNotNull])]
-    property ProductId: Integer read FProductId write FProductId;
+    property ProductId: Integer read fProductId write fProductId;
 
     [Column('UnitPrice', [cpRequired, cpNotNull])]
     property UnitPrice: Currency read fUnitPrice write fUnitPrice;
